@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:selectableItemBackground">
+
+    <TextView
+        android:id="@+id/task_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="@dimen/margin_padding_size_small"
+        android:layout_toLeftOf="@id/date"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/margin_padding_size_medium"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="@dimen/text_size_medium"
+        tools:text="Buy an ecobee4" />
+
+    <TextView
+        android:id="@+id/task_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/task_title"
+        android:layout_marginBottom="4dp"
+        android:layout_toLeftOf="@id/date"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/margin_padding_size_medium"
+        android:textColor="@android:color/tertiary_text_light"
+        android:textSize="@dimen/text_size_small"
+        tools:text="Need to upgrade to a smart thermostat" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="@dimen/margin_padding_size_medium"
+        android:textSize="@dimen/text_size_small"
+        tools:text="01/02/18" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/task_description"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/darker_gray" />
+
+</RelativeLayout>
+

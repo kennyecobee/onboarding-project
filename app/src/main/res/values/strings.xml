@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">OnboardingProject</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="save">Save</string>
+    <string name="no_tasks_text">It seems like you don\'t have any tasks added.</string>
+
+    <!-- Hints -->
+    <string name="title_hint">Enter a title for the task</string>
+    <string name="description_hint">Enter a description for the task</string>
+    <string name="date_hint">Select a date for the task</string>
+
+    <!-- Titles -->
+    <string name="task_list_title">Task List</string>
+    <string name="task_detail_title">Task Detail</string>
+
+    <!-- Errors -->
+    <string name="missing_title_entry">Please enter a title for this Task.</string>
+    <string name="missing_description_entry">Please enter a description for this Task.</string>
+
+</resources>
