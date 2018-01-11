@@ -1,21 +1,22 @@
 package com.example.kennyr.onboardingproject.util
 
+import junit.framework.Assert.assertTrue
 import org.junit.Test
 
 class TextUtilsTest {
 
     @Test
     fun testNullText() {
-        assert(TextUtils.isEmpty(null))
+        assertTrue(TextUtils.isEmpty(null))
     }
 
     @Test
     fun testEmptyText() {
-        assert(TextUtils.isEmpty(""))
+        assertTrue(TextUtils.isEmpty(""))
     }
 
     @Test
     fun testNonEmptyText() {
-        assert(!TextUtils.isEmpty("Text"))
+        assertTrue(!TextUtils.isEmpty("Text"))
     }
 }

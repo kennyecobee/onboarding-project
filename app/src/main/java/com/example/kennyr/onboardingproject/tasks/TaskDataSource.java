@@ -33,6 +33,10 @@ public class TaskDataSource {
         dataSource.tasks.set(position, editedTask);
     }
 
+    public void clear() {
+        dataSource.tasks.clear();
+    }
+
     public static TaskDataSource getInstance() {
         if (dataSource == null) {
             dataSource = new TaskDataSource();
