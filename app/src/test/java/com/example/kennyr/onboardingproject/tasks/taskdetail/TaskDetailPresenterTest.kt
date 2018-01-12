@@ -2,7 +2,6 @@ package com.example.kennyr.onboardingproject.tasks.taskdetail
 
 import android.support.v4.util.Pair
 import com.example.kennyr.onboardingproject.R
-import com.example.kennyr.onboardingproject.Toolbar
 import com.example.kennyr.onboardingproject.tasks.Task
 import com.example.kennyr.onboardingproject.tasks.TaskDataSource
 import com.example.kennyr.onboardingproject.util.DateConverter
@@ -22,14 +21,15 @@ import java.util.*
 
 class TaskDetailPresenterTest {
 
-    @Rule @JvmField val mockitoRule = MockitoJUnit.rule()!!
+    @Rule
+    @JvmField
+    val mockitoRule = MockitoJUnit.rule()!!
 
-    @Mock private lateinit var view : TaskDetailView
-    @Mock private lateinit var stringProvider : StringProvider
-    @Mock private lateinit var dataSource : TaskDataSource
-    @Mock private lateinit var toolbar : Toolbar
+    @Mock private lateinit var view: TaskDetailView
+    @Mock private lateinit var stringProvider: StringProvider
+    @Mock private lateinit var dataSource: TaskDataSource
 
-    @InjectMocks private lateinit var presenter : TaskDetailPresenter
+    @InjectMocks private lateinit var presenter: TaskDetailPresenter
 
     private val date = Date()
     private val task = Task("title", "destcription", getDate())
@@ -44,7 +44,7 @@ class TaskDetailPresenterTest {
     @Test
     fun `on start, tile is set`() {
         presenter.start()
-        verify(toolbar).showTitle(stringProvider.getString(R.string.task_detail_title))
+        verify(view).setTitle(stringProvider.getString(R.string.task_detail_title))
     }
 
     @Test
@@ -168,14 +168,14 @@ class TaskDetailPresenterTest {
         view.stub { on { listenToSaveTaskClicks() } doReturn Observable.just(Pair.create(task, 0)) }
     }
 
-    private fun stubDateClicks(clicks : Observable<Boolean>) = view.stub { on { listenToChangeDateClicks() } doReturn clicks }
-    private fun stubSaveClicks(clicks : Observable<Pair<Task, Int>>) = view.stub { on { listenToSaveTaskClicks() } doReturn clicks }
+    private fun stubDateClicks(clicks: Observable<Boolean>) = view.stub { on { listenToChangeDateClicks() } doReturn clicks }
+    private fun stubSaveClicks(clicks: Observable<Pair<Task, Int>>) = view.stub { on { listenToSaveTaskClicks() } doReturn clicks }
 
     private fun stubGetSelectedDate() = view.stub { on { selectedDate } doReturn Observable.just(getDate()) }
     private fun stubNonEmptySource() = dataSource.stub { on { get(any()) } doReturn task }
     private fun stubNonEmptySourceList() = dataSource.stub { on { tasksList } doReturn listOf(task) }
 
-    private fun getDate() : Date {
+    private fun getDate(): Date {
         return date
     }
 }

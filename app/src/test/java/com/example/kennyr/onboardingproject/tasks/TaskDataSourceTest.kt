@@ -1,19 +1,13 @@
 package com.example.kennyr.onboardingproject.tasks
 
 import junit.framework.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
 import java.util.*
 
 class TaskDataSourceTest {
 
-    private val dataSource = TaskDataSource.getInstance()
+    private val dataSource = TaskDataSource()
     private val task = Task("title", "description", Date())
-
-    @Before
-    fun setup() {
-        dataSource.clear()
-    }
 
     @Test
     fun `adding the first task and retrieving it`() {

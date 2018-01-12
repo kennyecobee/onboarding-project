@@ -1,11 +1,13 @@
 package com.example.kennyr.onboardingproject.tasks.tasklist
 
 import com.example.kennyr.onboardingproject.R
-import com.example.kennyr.onboardingproject.Toolbar
 import com.example.kennyr.onboardingproject.tasks.Task
 import com.example.kennyr.onboardingproject.tasks.TaskDataSource
 import com.example.kennyr.onboardingproject.util.StringProvider
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.argWhere
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.stub
+import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Rule
@@ -17,14 +19,15 @@ import java.util.*
 
 class TaskListPresenterTest {
 
-    @Rule @JvmField val mockitoRule = MockitoJUnit.rule()!!
+    @Rule
+    @JvmField
+    val mockitoRule = MockitoJUnit.rule()!!
 
-    @Mock private lateinit var view : TaskListView
-    @Mock private lateinit var stringProvider : StringProvider
-    @Mock private lateinit var dataSource : TaskDataSource
-    @Mock private lateinit var toolbar : Toolbar
+    @Mock private lateinit var view: TaskListView
+    @Mock private lateinit var stringProvider: StringProvider
+    @Mock private lateinit var dataSource: TaskDataSource
 
-    @InjectMocks private lateinit var presenter : TaskListPresenter
+    @InjectMocks private lateinit var presenter: TaskListPresenter
 
     @Before
     fun setup() {
@@ -35,7 +38,7 @@ class TaskListPresenterTest {
     @Test
     fun `on start, toolbar will be set up`() {
         presenter.start()
-        verify(toolbar).showTitle(stringProvider.getString(R.string.task_list_title))
+        verify(view).setTitle(stringProvider.getString(R.string.task_list_title))
     }
 
     @Test
@@ -92,8 +95,8 @@ class TaskListPresenterTest {
         verify(view).showTaskDetail(0)
     }
 
-    private fun stubNewTaskClicks(clicks : Observable<Boolean>) = view.stub { on { listenToNewTaskClicks() } doReturn clicks }
-    private fun stubEditTaskClicks(clicks : Observable<Int>) = view.stub { on { listenToEditTaskClicks() } doReturn clicks }
+    private fun stubNewTaskClicks(clicks: Observable<Boolean>) = view.stub { on { listenToNewTaskClicks() } doReturn clicks }
+    private fun stubEditTaskClicks(clicks: Observable<Int>) = view.stub { on { listenToEditTaskClicks() } doReturn clicks }
 
     private fun stubGetEmptyTasksList() = dataSource.stub { on { tasksList } doReturn emptyList<Task>() }
     private fun stubGetTasksList() = dataSource.stub { on { tasksList } doReturn listOf(Task("title", "description", Date())) }

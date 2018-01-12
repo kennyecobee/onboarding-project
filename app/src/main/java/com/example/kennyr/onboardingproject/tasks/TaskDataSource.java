@@ -32,8 +32,4 @@ public class TaskDataSource {
     public void replace(Task editedTask, int position) {
         tasks.set(position, editedTask);
     }
-
-    public void clear() {
-        tasks.clear();
-    }
 }
