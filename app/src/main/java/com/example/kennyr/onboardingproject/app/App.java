@@ -8,8 +8,7 @@ public class App extends android.app.Application {
     public void onCreate() {
         super.onCreate();
 
-        AppModule module = new AppModule(this);
-        component = DaggerAppComponent.builder().appModule(module).build();
+        component = DaggerAppComponent.builder().build();
         component.injectMembers(this);
     }
 

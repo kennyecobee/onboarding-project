@@ -30,7 +30,7 @@ public class TaskActivity extends AppCompatActivity implements TaskContract.Comp
 
         setSupportActionBar(toolbar);
 
-        component = ((App) getApplication()).getComponent().with(new TaskModule(this));
+        component = ((App) getApplication()).getComponent().provideTaskBuilder().context(this).toolbar(toolbar).build();
         component.inject(this);
 
         if (savedInstanceState == null) {
@@ -58,11 +58,6 @@ public class TaskActivity extends AppCompatActivity implements TaskContract.Comp
         }
 
         transaction.commit();
-    }
-
-    @Override
-    public void updateTitle(String title) {
-        toolbar.setTitle(title);
     }
 
     @Override

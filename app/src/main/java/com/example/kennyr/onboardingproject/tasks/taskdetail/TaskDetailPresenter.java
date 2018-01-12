@@ -1,7 +1,6 @@
 package com.example.kennyr.onboardingproject.tasks.taskdetail;
 
 import com.example.kennyr.onboardingproject.R;
-import com.example.kennyr.onboardingproject.Toolbar;
 import com.example.kennyr.onboardingproject.tasks.Task;
 import com.example.kennyr.onboardingproject.tasks.TaskDataSource;
 import com.example.kennyr.onboardingproject.util.DateConverter;
@@ -20,19 +19,16 @@ public class TaskDetailPresenter {
     private final TaskDetailView view;
     private final StringProvider stringProvider;
     private final TaskDataSource dataSource;
-    private final Toolbar toolbar;
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Inject
     TaskDetailPresenter(TaskDetailView view,
                         StringProvider stringProvider,
-                        TaskDataSource dataSource,
-                        Toolbar toolbar) {
+                        TaskDataSource dataSource) {
         this.view = view;
         this.stringProvider = stringProvider;
         this.dataSource = dataSource;
-        this.toolbar = toolbar;
     }
 
     void start() {
@@ -53,7 +49,7 @@ public class TaskDetailPresenter {
     }
 
     private void setupToolbar() {
-        toolbar.showTitle(stringProvider.getString(R.string.task_detail_title));
+        view.setTitle(stringProvider.getString(R.string.task_detail_title));
     }
 
     private void setupContent() {

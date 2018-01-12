@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,13 +35,15 @@ public class TaskListView implements OnTaskSelectedListener {
     @BindView(R.id.no_tasks_text)
     TextView noTasksText;
 
-    private Fragment fragment;
+    private final Fragment fragment;
+    private final Toolbar toolbar;
     private PublishSubject<Boolean> newTaskClicks = PublishSubject.create();
     private PublishSubject<Integer> editTaskClicks = PublishSubject.create();
 
     @Inject
-    TaskListView(Fragment fragment) {
+    TaskListView(Fragment fragment, Toolbar toolbar) {
         this.fragment = fragment;
+        this.toolbar = toolbar;
     }
 
     void start() {
@@ -100,5 +103,9 @@ public class TaskListView implements OnTaskSelectedListener {
 
     private void registerClickListeners() {
         newTaskButton.setOnClickListener(ignore -> newTaskClicks.onNext(true));
+    }
+
+    public void setTitle(String title) {
+        toolbar.setTitle(title);
     }
 }

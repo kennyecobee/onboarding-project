@@ -15,9 +15,6 @@ import javax.inject.Inject;
 
 public class TaskListFragment extends Fragment {
 
-    // TODO: Update Task Detail to new format
-    // TODO: Write unit tests
-
     @Inject
     TaskListPresenter presenter;
 
@@ -31,7 +28,17 @@ public class TaskListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
-        ((TaskContract.ComponentProvider) getActivity()).getTaskComponent().with(new TaskListModule(this)).inject(this);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((TaskContract.ComponentProvider) getActivity())
+                .getTaskComponent()
+                .provideTaskListBuilder()
+                .fragment(this)
+                .build()
+                .inject(this);
         presenter.start();
     }
 

@@ -10,7 +10,8 @@ public class StringProvider {
 
     private Resources resources;
 
-    public StringProvider(Context context) {
+    @Inject
+    StringProvider(Context context) {
         resources = context.getResources();
     }
 

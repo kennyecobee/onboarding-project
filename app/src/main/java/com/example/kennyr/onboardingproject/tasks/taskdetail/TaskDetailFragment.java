@@ -31,12 +31,18 @@ public class TaskDetailFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         setRetainInstance(true);
+    }
 
-        TaskDetailComponent component = ((TaskContract.ComponentProvider) getActivity()).getTaskComponent()
-                .with(new TaskDetailModule(this));
-        component.inject(this);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((TaskContract.ComponentProvider) getActivity())
+                .getTaskComponent()
+                .provideTaskDetailBuilder()
+                .fragment(this)
+                .build()
+                .inject(this);
         presenter.start();
 
         if (getArguments() != null) {

@@ -5,17 +5,13 @@ import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 
 import com.example.kennyr.onboardingproject.tasks.taskdetail.TaskDetailComponent;
-import com.example.kennyr.onboardingproject.tasks.taskdetail.TaskDetailModule;
 import com.example.kennyr.onboardingproject.tasks.tasklist.TaskListComponent;
-import com.example.kennyr.onboardingproject.tasks.tasklist.TaskListModule;
 
 public interface TaskContract {
 
     interface TaskActivityContract {
 
         void replaceFragment(Fragment fragment, String tag, Bundle bundle);
-
-        void updateTitle(String title);
     }
 
     interface ComponentProvider {
@@ -23,9 +19,9 @@ public interface TaskContract {
     }
 
     interface Component {
-        TaskListComponent with(TaskListModule module);
+        TaskListComponent.Builder provideTaskListBuilder();
 
-        TaskDetailComponent with(TaskDetailModule module);
+        TaskDetailComponent.Builder provideTaskDetailBuilder();
     }
 
     @StringDef({FragmentTag.LIST, FragmentTag.DETAIL})

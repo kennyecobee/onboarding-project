@@ -2,6 +2,7 @@ package com.example.kennyr.onboardingproject.tasks.taskdetail;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,13 +39,15 @@ public class TaskDetailView {
     @BindView(R.id.save_task_button)
     Button saveButton;
 
-    private Fragment fragment;
+    private final Fragment fragment;
+    private final Toolbar toolbar;
     private PublishSubject<Boolean> changeDateClicks = PublishSubject.create();
     private PublishSubject<Pair<Task, Integer>> saveTaskClicks = PublishSubject.create();
 
     @Inject
-    TaskDetailView(Fragment fragment) {
+    TaskDetailView(Fragment fragment, Toolbar toolbar) {
         this.fragment = fragment;
+        this.toolbar = toolbar;
     }
 
     void start() {
@@ -90,6 +93,10 @@ public class TaskDetailView {
         titleEntry.setText(title);
         descriptionEntry.setText(description);
         dateEntry.setText(date);
+    }
+
+    void setTitle(String title) {
+        toolbar.setTitle(title);
     }
 
     private void setupOnClickListeners() {
